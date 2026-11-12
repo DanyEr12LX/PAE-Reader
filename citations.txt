@@ -1,3 +1,15 @@
+// ┌──────────────────────────────────────────────────────────────────┐ \\
+// │            ────  ┌────────────────────┐  ────                    │ \\
+// │            ────  │  Daniele  Piccolo  │  ────                    │ \\
+// │            ────  └────────────────────┘  ────                    │ \\
+// │ GitHub   : https://github.com/DanyEr12LX/                        │ \\
+// │ LinkedIn : https://www.linkedin.com/in/daniele-piccolo-biomol/   │ \\
+// │ ORCID    : https://orcid.org/0009-0000-3563-2292                 │ \\
+// │ Mail     : daniele.piccolo98@gmail.com                           │ \\
+// │                                                                  │ \\
+// │ #  AlphaFold Predicted Aligned Error (PAE) matrix visualization. │ \\
+// └──────────────────────────────────────────────────────────────────┘ \\
+
 Jumper, J et al. Highly accurate protein structure prediction with AlphaFold. Nature (2021)
 
 Bertoni D. et al. AlphaFold Protein Structure Database 2025: a redesigned interface and updated structural coverage, Nucleic Acids Research, (2025)
