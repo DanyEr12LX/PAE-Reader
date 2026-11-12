@@ -22,17 +22,24 @@ let PAEData;
 
 
 function setup() {
-  fileUploader = new FileUploader()
-  fileUploader.loadDemo()
-  
-  size = new Size()
-  
-  rangePanel = new RangePanel()
+  size = new Size();
   
   createCanvas(size.graph + size.strip + size.axis_w, 
                size.graph + size.strip + size.axis_w);
   noLoop();
 
+  // Right container
+  let sidebar = createDiv();
+  sidebar.addClass("sidebar");
+
+  fileUploader = new FileUploader();
+  fileUploader.panel.parent(sidebar);
+  fileUploader.loadDemo();
+  
+  size.panel.parent(sidebar);
+  
+  rangePanel = new RangePanel();
+  rangePanel.panel.parent(sidebar);
 }
 
 
