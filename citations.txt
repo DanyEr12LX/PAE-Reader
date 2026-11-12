@@ -1,0 +1,5 @@
+Jumper, J et al. Highly accurate protein structure prediction with AlphaFold. Nature (2021)
+
+Bertoni D. et al. AlphaFold Protein Structure Database 2025: a redesigned interface and updated structural coverage, Nucleic Acids Research, (2025)
+
+The predicted 3D structure of human NLGN4X (UniProt: Q8N0W4) was retrieved from the AlphaFold Protein Structure Database (Model ID: AF-Q8N0W4-F1, version 6)
