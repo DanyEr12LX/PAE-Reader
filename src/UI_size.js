@@ -21,6 +21,7 @@ class Size {
     this.strip = 35;
     this.axis_w = 50;
     this.axis_interval = 50;
+    this.res = this.graph / 800 // PAEData.data.length
 
     // Graph size
     this.graphInput = this.createSetting("Graph size", 800, value => {
@@ -64,6 +65,10 @@ class Size {
 
   // Find and set the appropriate axis text size
   setTextSize() {
+    
+    // Resolution
+    this.w = this.graph / PAEData.data.length
+    
     let sizeText = 18;
     let c = 20;
 
@@ -73,7 +78,7 @@ class Size {
       this.axis_w = textWidth("0".repeat(String(PAEData.data.length).length));
       this.axis_w *= 1.25;
 
-      if (this.axis_w > this.axis_interval) {
+      if (this.axis_w > this.axis_interval * this.w) {
         sizeText--;
       } else {
         break;

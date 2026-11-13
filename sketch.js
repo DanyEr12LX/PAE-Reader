@@ -47,17 +47,17 @@ function setup() {
 function DrawGraph() { 
   // find correct text size and
   size.setTextSize()
+  rangePanel.rangeIndexing()
   
-  resizeCanvas(size.graph + size.strip + size.axis_w, 
-               size.graph + size.strip + size.axis_w);
+  resizeCanvas(size.graph + size.strip + size.axis_w + size.axis_w * 0.5, 
+               size.graph + size.strip + size.axis_w + size.axis_w * 0.5);
   
   background(255);
   colorMode(HSB, 360, 1, 1);
+  rectMode(CORNER)
   noStroke();
   resetMatrix();
   translate(size.strip + size.axis_w, size.strip + size.axis_w);
-
-  let w = size.graph / PAEData.data.length
   
   // Draw the PAE matrix using a color map:
   // - Hue represents the residue domain.
@@ -71,7 +71,7 @@ function DrawGraph() {
         : 0
       
       fill(col, s, 1)
-      square(x * w, y * w, w);
+      square(x * size.w, y * size.w, size.w);
     }  
   }
 
@@ -81,28 +81,28 @@ function DrawGraph() {
   noFill();
   drawingContext.setLineDash([5]);
   for(let i = 0; i < PAEData.data.length; i += size.axis_interval ) {
-    line(0, i * w, size.graph, i * w)
-    line(i * w, 0, i * w, size.graph)  
+    line(0, i * size.w, size.graph, i * size.w)
+    line(i * size.w, 0, i * size.w, size.graph)  
   }
   drawingContext.setLineDash([0]);
  
-  // Domain Boundaries
+  // Plot Domain Boundaries
   noFill();
   strokeWeight(1);
   for(let p of rangePanel.domain_ranges) {
     stroke(p.col, 1, 1)
-    line(0, w * (p.idx-1), w * (p.idx-1), w * (p.idx-1))
-    line(w * (p.idx-1), 0, w * (p.idx-1), w * (p.idx-1))
+    line(0, size.w * (p.idx-1), size.w * (p.idx-1), size.w * (p.idx-1))
+    line(size.w * (p.idx-1), 0, size.w * (p.idx-1), size.w * (p.idx-1))
   }
  
   // Marginal color strips to indicate domain assignments
-  resetMatrix();
-  translate(size.axis_w, size.axis_w);
+  rectMode(CORNERS)
   for(let p of rangePanel.domain_ranges) {
     fill(p.col, 1, 1)
     stroke(p.col, 1, 0.5);
-    rect(0, w * (p.idx-1) + size.strip, size.strip, height)
-    rect(w * (p.idx-1) + size.strip, 0, width, size.strip)
+    
+    rect(-size.strip, size.w * (p.idx-1), 0, size.w * PAEData.data.length)
+    rect(size.w * (p.idx-1), -size.strip, size.w * PAEData.data.length, 0)
   }
  
   // Residue Indices along both matrix axes
@@ -112,10 +112,10 @@ function DrawGraph() {
   for(let y = 0; y < PAEData.data.length; y+= size.axis_interval) {    
     // vertical axis
     textAlign(RIGHT, CENTER);
-    text(y, size.axis_w * 0.875, w * y + size.strip + size.axis_w)
+    text(y, size.axis_w * 0.875, size.w * y + size.strip + size.axis_w)
 
     // horizontal axis
     textAlign(CENTER, BOTTOM);
-    text(y, w * y + size.strip + size.axis_w, size.axis_w * 0.875)
+    text(y, size.w * y + size.strip + size.axis_w, size.axis_w * 0.875)
   }
 }

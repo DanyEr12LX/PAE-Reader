@@ -31,7 +31,7 @@ class RangePanel {
     
     this.panel = createDiv();
     this.panel.addClass("range-panel");
-    this.renderRangePanel();
+    this.renderRangePanel()
   }
 
   // Generate the input controls for each domain range
@@ -46,6 +46,7 @@ class RangePanel {
       // Residue index input
       let idxInput = createInput(String(range.idx), "number");
       idxInput.parent(row);
+        if(index === 0) idxInput.attribute("readonly", ""); // First one is read-only
       idxInput.input(() => {
         let value = Number(idxInput.value());
         value = constrain(value, 0, PAEData.data.length);
@@ -61,12 +62,14 @@ class RangePanel {
       });
 
       // Remove the selected range
-      let removeButton = createButton("×");
-      removeButton.parent(row);
-      removeButton.mousePressed(() => {
-        this.domain_ranges.splice(index, 1);
-        this.renderRangePanel();
-      });
+      if(index > 0) {  // First one should not be deleted
+        let removeButton = createButton("×");
+        removeButton.parent(row);
+        removeButton.mousePressed(() => {
+          this.domain_ranges.splice(index, 1);
+          this.renderRangePanel();
+        });
+      }
     });
 
     // Add a new domain range
